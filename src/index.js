@@ -1,3 +1,2 @@
-import test from './test';
-
-console.log(test());
+require('babel-polyfill');
+require('./app.js');

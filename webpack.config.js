@@ -1,17 +1,18 @@
 const path = require('path');
 
-const srcPath = path.join(__dirname, 'src');
-const entryFilePath = path.join(srcPath, 'index.js');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const srcPath = path.join(__dirname, 'src');
 const distPath = path.join(__dirname, 'dist');
-const bundleFileName = "bundle.js";
 
 module.exports = {
     context: srcPath,
-    entry: ['babel-polyfill', entryFilePath],
+    entry: {
+        index: path.join(srcPath, 'index.js')
+    },
 
     output: {
-        filename: bundleFileName,
+        filename: '[name].js',
         path: distPath,
     },
 
@@ -24,5 +25,10 @@ module.exports = {
             exclude: /node_modules/,
             loaders: ["babel-loader"]
         }]
-    }
+    },
+    plugins: [
+        new CopyWebpackPlugin([{
+            from: path.join(srcPath, 'index.html')
+        }])
+    ]
 };
