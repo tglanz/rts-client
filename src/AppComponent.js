@@ -1,5 +1,7 @@
 import React from 'react';
 
+import AvailableMapsList from './components/availableMaps/AvailableMapsList';
+
 export default () => <div>
-    <h1>This is the AppComponent</h1>
+    <AvailableMapsList />
 </div>
